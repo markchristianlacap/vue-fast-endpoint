@@ -1,0 +1,19 @@
+{
+  "cSpell.words": [
+    "ASPNETCORE",
+    "pinia",
+    "vueuse"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "omnisharp.enableRoslynAnalyzers": true,
+  "unocss.root": "src/Client",
+  "prettier.enable": false,
+  "vue.complete.casing.props": "kebab",
+  "vue.complete.casing.tags": "kebab",
+}
