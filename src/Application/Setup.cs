@@ -1,7 +1,9 @@
-using Application.Extensions;
+﻿using Application.Extensions;
 using Application.Services;
 using Database;
+using Database.Interceptors;
 using Database.Interfaces;
+using Database.Seeders;
 
 namespace Application;
 
@@ -14,10 +16,10 @@ public static class Setup
         services.AddFastEndpoints();
         services.AddSwaggerExtension();
         services.AddSpaExtension();
-        services.AddDatabase(config);
 
-        services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IDateTimeService, DateTimeService>();
+        services.AddDatabase(config);
+        services.AddTransient<IDateTimeService, DateTimeService>();
+        services.AddTransient<IUserService, UserService>();
     }
 
     public static void ConfigureApplication(this WebApplication app, IWebHostEnvironment env)
@@ -26,6 +28,7 @@ public static class Setup
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
+        app.UseEndpoints(e => { });
         app.UseFastEndpointsExtension();
         app.UseSpaExtension();
         if (env.IsDevelopment())

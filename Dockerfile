@@ -4,13 +4,13 @@ WORKDIR /app
 COPY *.sln .
 COPY src/Application/*.csproj ./src/Application/
 COPY src/Domain/*.csproj ./src/Domain/
-COPY src/Infrastructure/*.csproj ./src/Infrastructure/
+COPY src/Database/*.csproj ./src/Database/
 
 RUN dotnet restore
 
 COPY src/Application/. ./src/Application/
 COPY src/Domain/. ./src/Domain/
-COPY src/Infrastructure/. ./src/Infrastructure/
+COPY src/Database/. ./src/Database/
 
 WORKDIR /app
 RUN dotnet publish -c Release -o out

@@ -1,18 +1,18 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run dev --workspace src/Client",
-        "watch": "dotnet watch --project src/Application --no-hot-reload",
-        "seed": "dotnet run seed --project src/Application",
-        "migrations:add": "dotnet ef migrations add -p src/Infrastructure -s src/Application -o Persistence/Migrations",
-        "migrations:remove": "dotnet ef migrations remove -p src/Infrastructure -s src/Application",
-        "migrations:list": "dotnet ef migrations list -p src/Infrastructure -s src/Application",
-        "db:update": "dotnet ef database update -p src/Infrastructure -s src/Application",
-        "db:drop": "dotnet ef database drop -p src/Infrastructure -s src/Application"
-    },
-    "author": "markchristianlacap@gmail.com",
-    "license": "MIT",
-    "workspaces": [
-        "src/Client"
-    ]
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --workspace src/Client",
+    "watch": "dotnet watch --project src/Application --no-hot-reload",
+    "seed": "dotnet run seed --project src/Application",
+    "migrations:add": "dotnet ef migrations add -p src/Database -s src/Application -o Migrations",
+    "migrations:remove": "dotnet ef migrations remove -p src/Database -s src/Application",
+    "migrations:list": "dotnet ef migrations list -p src/Database -s src/Application",
+    "db:update": "dotnet ef database update -p src/Database -s src/Application",
+    "db:drop": "dotnet ef database drop -p src/Database -s src/Application"
+  },
+  "author": "markchristianlacap@gmail.com",
+  "license": "MIT",
+  "workspaces": [
+    "src/Client"
+  ]
 }

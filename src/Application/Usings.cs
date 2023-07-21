@@ -1,2 +1,2 @@
-global using FastEndpoints;
+﻿global using FastEndpoints;
 global using FluentValidation;

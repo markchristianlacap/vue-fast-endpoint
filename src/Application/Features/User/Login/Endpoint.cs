@@ -1,4 +1,4 @@
-using Database;
+﻿using Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.User.Login;
@@ -10,7 +10,7 @@ public class Endpoint : Endpoint<LoginRequest>
     public override void Configure()
     {
         AllowAnonymous();
-        Post("/login");
+        Post("/user/login");
     }
 
     public override async Task HandleAsync(LoginRequest req, CancellationToken ct)

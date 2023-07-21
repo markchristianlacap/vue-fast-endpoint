@@ -1,4 +1,5 @@
-using Database.Interceptors;
+﻿using Database.Interceptors;
+using Database.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,5 +15,6 @@ public static class Setup
             o => o.UseSqlServer(connectionString, b => b.MigrationsAssembly("Database"))
         );
         services.AddScoped<DbInterceptor>();
+        services.AddScoped<DbSeeder>();
     }
 }

@@ -1,3 +1,5 @@
+﻿using System.Security.Claims;
+using Database;
 using Database.Interfaces;
 using Domain.Entities;
 
@@ -5,24 +7,29 @@ namespace Application.Services;
 
 public class UserService : IUserService
 {
-    Guid? IUserService.UserId => throw new NotImplementedException();
+    private readonly IHttpContextAccessor _http;
 
-    Task<User> IUserService.CreateUser(User user, string password) =>
-        throw new NotImplementedException();
+    public UserService(IHttpContextAccessor http)
+    {
+        _http = http;
+    }
 
-    Task IUserService.ForgotPassword(string email, string callBackUrl) =>
-        throw new NotImplementedException();
+    public Guid? UserId =>
+        Guid.TryParse(
+            _http.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier),
+            out var id
+        )
+            ? id
+            : null;
 
-    Task IUserService.ResetPassword(string token, string password) =>
-        throw new NotImplementedException();
+    public User CreateUser(User user, string password)
+    {
+        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+        return user;
+    }
 
-    Task IUserService.SendEmailVerification(User user) => throw new NotImplementedException();
-
-    User IUserService.UpdateUserPassword(User user, string password) =>
-        throw new NotImplementedException();
-
-    Task IUserService.VerifyEmail(string token) => throw new NotImplementedException();
-
-    bool IUserService.VerifyPassword(string hashPassword, string password) =>
-        throw new NotImplementedException();
+    public bool VerifyPassword(string hashPassword, string password)
+    {
+        return BCrypt.Net.BCrypt.Verify(password, hashPassword);
+    }
 }

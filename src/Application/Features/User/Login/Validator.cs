@@ -1,4 +1,4 @@
-namespace Application.Features.User.Login;
+﻿namespace Application.Features.User.Login;
 
 public class Validator : Validator<LoginRequest>
 {
