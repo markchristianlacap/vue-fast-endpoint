@@ -1,10 +1,12 @@
-export const themeColors = {
-  primary: '#06486d',
-  secondary: '#2980B9',
-  accent: '#096da5',
-  negative: '#E74C3C',
-  positive: '#27AE60',
-  warning: '#F39C12',
-  info: '#16A085',
+import type { QuasarUIConfiguration } from 'quasar'
+
+export const themeColors: QuasarUIConfiguration['brand'] = {
+  accent: '#027be3',
   dark: '#1d1d1d',
+  positive: '#21ba45',
+  negative: '#c10015',
+  info: '#31ccec',
+  primary: '#1976d2',
+  secondary: '#424242',
+  warning: '#f2c037',
 }

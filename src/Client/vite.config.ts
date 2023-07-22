@@ -34,7 +34,7 @@ export default defineConfig({
         'quasar',
         'pinia',
       ],
-      dirs: ['src/composables', 'src/stores', 'src/plugins', 'src/utils'],
+      dirs: ['src/composables/*', 'src/stores/*', 'src/plugins/*', 'src/utils/*', 'src/api/*'],
       vueTemplate: true,
       dts: 'src/auto-imports.d.ts',
     }),

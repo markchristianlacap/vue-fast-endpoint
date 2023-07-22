@@ -4,3 +4,7 @@ body,
 #app {
   font-family: "Poppins", sans-serif;
 }
+.body--light{
+  color: #333;
+  background-color: #22222;
+}

@@ -1,9 +1,13 @@
 {
   "cSpell.words": [
     "ASPNETCORE",
+    "composables",
     "pinia",
     "Serilog",
-    "vueuse"
+    "Unocss",
+    "unplugin",
+    "vueuse",
+    "webfont"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

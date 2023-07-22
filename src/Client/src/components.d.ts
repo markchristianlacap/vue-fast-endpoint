@@ -7,9 +7,12 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    QBanner: typeof import('quasar')['QBanner']
     QBtn: typeof import('quasar')['QBtn']
     QCard: typeof import('quasar')['QCard']
+    QCardActions: typeof import('quasar')['QCardActions']
     QCardSection: typeof import('quasar')['QCardSection']
+    QIcon: typeof import('quasar')['QIcon']
     QInput: typeof import('quasar')['QInput']
     QLayout: typeof import('quasar')['QLayout']
     QPage: typeof import('quasar')['QPage']
