@@ -254,7 +254,8 @@ dotnet_diagnostic.CA1012.severity = warning
 
 # CA1822: Make member static
 dotnet_diagnostic.CA1822.severity = warning
-
+# Disabling the ASP0014 warning
+dotnet_diagnostic.ASP0014.severity = none
 # Prefer "var" everywhere
 dotnet_diagnostic.IDE0007.severity = warning
 csharp_style_var_for_built_in_types = true:warning

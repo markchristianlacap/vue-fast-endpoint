@@ -1,9 +1,7 @@
 ﻿using Application.Extensions;
 using Application.Services;
 using Database;
-using Database.Interceptors;
 using Database.Interfaces;
-using Database.Seeders;
 
 namespace Application;
 
@@ -19,7 +17,7 @@ public static class Setup
 
         services.AddDatabase(config);
         services.AddTransient<IDateTimeService, DateTimeService>();
-        services.AddTransient<IUserService, UserService>();
+        services.AddScoped<IUserService, UserService>();
     }
 
     public static void ConfigureApplication(this WebApplication app, IWebHostEnvironment env)

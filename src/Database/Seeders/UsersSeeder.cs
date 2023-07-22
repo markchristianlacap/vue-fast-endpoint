@@ -12,7 +12,7 @@ public static class UsersSeeder
             return;
         }
         var user = new User { Name = "Admin", Email = "admin@admin.com", };
-        user = userService.CreateUser(user, "admin");
+        user = userService.HashPassword(user, "admin");
         await db.Users.AddAsync(user);
         await db.SaveChangesAsync();
     }

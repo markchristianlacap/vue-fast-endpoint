@@ -2,7 +2,6 @@
 using Database.Seeders;
 using Serilog;
 using Serilog.Exceptions;
-
 var builder = WebApplication.CreateBuilder();
 
 builder.Host.UseSerilog(
@@ -21,7 +20,6 @@ builder.Services.ConfigureServices(config);
 
 var app = builder.Build();
 var env = app.Environment;
-app.ConfigureApplication(env);
 
 if (args.Length > 0 && args[0] == "seed")
 {
@@ -30,5 +28,7 @@ if (args.Length > 0 && args[0] == "seed")
     await dbSeeder.Seed();
     return;
 }
+
+app.ConfigureApplication(env);
 
 await app.RunAsync();

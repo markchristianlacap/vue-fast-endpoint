@@ -21,7 +21,7 @@ public class PagedResponse<T>
     public IList<T> Rows { get; set; } = new List<T>();
 }
 
-public static class PaginationHelper
+public static class DbPagination
 {
     public static async Task<PagedResponse<T>> ToPagedAsync<T>(
         this IQueryable<T> query,

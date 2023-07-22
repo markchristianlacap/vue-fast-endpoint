@@ -22,14 +22,14 @@ public class UserService : IUserService
             ? id
             : null;
 
-    public User CreateUser(User user, string password)
+    public User HashPassword(User user, string password)
     {
-        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+        user.HashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
         return user;
     }
 
-    public bool VerifyPassword(string hashPassword, string password)
+    public bool VerifyPassword(User user, string password)
     {
-        return BCrypt.Net.BCrypt.Verify(password, hashPassword);
+        return BCrypt.Net.BCrypt.Verify(password, user.HashedPassword);
     }
 }
