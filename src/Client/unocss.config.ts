@@ -6,9 +6,16 @@ import {
 } from 'unocss'
 import { themeColors } from './src/constants/theme-colors'
 
+interface Colors {
+  [key: string]:
+  | (Colors & {
+    DEFAULT?: string
+  })
+  | string
+}
 export default defineConfig({
   theme: {
-    colors: themeColors,
+    colors: themeColors as Colors,
   },
   presets: [
     presetUno({

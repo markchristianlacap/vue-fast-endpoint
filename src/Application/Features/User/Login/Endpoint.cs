@@ -10,6 +10,7 @@ public class Endpoint : Endpoint<LoginRequest>
 {
     public AppDbContext Db { get; set; } = null!;
     public IUserService UserService { get; set; } = null!;
+
     public override void Configure()
     {
         AllowAnonymous();

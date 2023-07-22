@@ -2,6 +2,7 @@
 using Database.Seeders;
 using Serilog;
 using Serilog.Exceptions;
+
 var builder = WebApplication.CreateBuilder();
 
 builder.Host.UseSerilog(

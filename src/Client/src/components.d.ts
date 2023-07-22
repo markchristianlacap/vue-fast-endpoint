@@ -17,6 +17,8 @@ declare module 'vue' {
     QLayout: typeof import('quasar')['QLayout']
     QPage: typeof import('quasar')['QPage']
     QPageContainer: typeof import('quasar')['QPageContainer']
+    QTable: typeof import('quasar')['QTable']
+    RemoteDataTable: typeof import('./components/RemoteDataTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -10,6 +10,9 @@ public class PagedRequest
 
     [DefaultValue(15)]
     public int? RowsPerPage { get; set; } = 15;
+
+    public string? SortBy { get; set; }
+    public bool? Descending { get; set; }
 }
 
 public class PagedResponse<T>
@@ -30,6 +33,13 @@ public static class DbPagination
     )
         where T : class
     {
+        if (request.SortBy != null)
+        {
+            query = request.Descending ?? false
+                ? query.OrderByColumnDescending(request.SortBy)
+                : query.OrderByColumn(request.SortBy);
+        }
+
         var page = request.Page ?? 1;
         var rowsPerPage = request.RowsPerPage ?? 15;
         var result = new PagedResponse<T>

@@ -8,6 +8,7 @@ public class Endpoint : EndpointWithoutRequest
     {
         Post("/user/logout");
     }
+
     public override async Task HandleAsync(CancellationToken ct)
     {
         await CookieAuth.SignOutAsync();

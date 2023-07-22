@@ -1,4 +1,5 @@
-namespace Application.Features.User.GetUser;
+﻿namespace Application.Features.User.GetUser;
+
 public class UserResponse
 {
     public Guid Id { get; set; }

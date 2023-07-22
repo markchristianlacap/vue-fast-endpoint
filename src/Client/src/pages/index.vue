@@ -29,12 +29,15 @@ async function login() {
 <template>
   <div class="un-(grid h-screen w-screen items-center justify-center)">
     <form @submit.prevent="login">
-      <q-card class="un-(max-w-500px w-full)" bordered flat>
+      <q-card class="un-(max-w-500px w-full)" flat bordered>
         <q-card-section>
           <p class="text-h6">
             Login Form
           </p>
-          <q-banner v-if="errors.generalErrors" class="bg-negative text-white q-my-md">
+          <q-banner
+            v-if="errors.generalErrors"
+            class="bg-negative text-white q-my-md"
+          >
             <div v-for="error in errors.generalErrors" :key="error">
               {{ error }}
             </div>
