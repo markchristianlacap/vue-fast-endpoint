@@ -20,7 +20,7 @@ public class Endpoint : Endpoint<UserPagedRequest, PagedResponse<UserPagedModel>
             query = query.Where(x => x.Name.Contains(req.Search) || x.Email.Contains(req.Search));
         }
 
-        Response = await query
+        var users = await query
             .Select(
                 u =>
                     new UserPagedModel
@@ -32,5 +32,7 @@ public class Endpoint : Endpoint<UserPagedRequest, PagedResponse<UserPagedModel>
                     }
             )
             .ToPagedAsync(req, ct);
+
+        Response = users;
     }
 }

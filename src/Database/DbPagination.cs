@@ -49,10 +49,10 @@ public static class DbPagination
             Total = await query.CountAsync(ct)
         };
         if (request.RowsPerPage == 0)
-            request.RowsPerPage = result.Total;
-        result.PageCount = result.Total / rowsPerPage;
+            result.RowsPerPage = result.Total;
+        result.PageCount = result.Total / result.RowsPerPage;
         var skip = (page - 1) * rowsPerPage;
-        result.Rows = await query.Skip(skip).Take(rowsPerPage).ToListAsync(ct);
+        result.Rows = await query.Skip(skip).Take(result.RowsPerPage).ToListAsync(ct);
         return result;
     }
 }

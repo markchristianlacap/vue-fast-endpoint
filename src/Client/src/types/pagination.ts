@@ -1,6 +1,8 @@
 export interface PagedRequest {
-  page?: number | null
-  rowsPerPage?: number | null
+  sortBy?: string | null
+  descending?: boolean
+  page?: number
+  rowsPerPage?: number
 }
 
 export interface PagedResponse<T> {
