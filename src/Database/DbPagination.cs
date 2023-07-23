@@ -35,9 +35,10 @@ public static class DbPagination
     {
         if (request.SortBy != null)
         {
-            query = request.Descending ?? false
-                ? query.OrderByColumnDescending(request.SortBy)
-                : query.OrderByColumn(request.SortBy);
+            query =
+                request.Descending ?? false
+                    ? query.OrderByColumnDescending(request.SortBy)
+                    : query.OrderByColumn(request.SortBy);
         }
 
         var page = request.Page ?? 1;

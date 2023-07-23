@@ -22,7 +22,10 @@ function getSlots(slots: any) {
 function onRequest(params: any) {
   pagination!.value = params.pagination
 }
-function checkable(row: T, col: 'cancelable' | 'deletable' | 'editable' | 'viewable') {
+function checkable(
+  row: T,
+  col: 'cancelable' | 'deletable' | 'editable' | 'viewable',
+) {
   if (typeof props[col] === 'function') {
     const fn = props[col] as (row: T) => boolean
     return fn(row)
@@ -39,7 +42,8 @@ const tablePagination = computed(() => {
 
 <template>
   <q-table
-    v-bind="props" :rows="response?.rows"
+    v-bind="props"
+    :rows="response?.rows"
     :pagination="tablePagination"
     :dark="$q.dark.isActive"
     @request="onRequest"

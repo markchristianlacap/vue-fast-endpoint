@@ -1,7 +1,8 @@
 import type { QTableProps, QTableSlots } from 'quasar'
 import type { PagedResponse } from './pagination'
 
-export interface RemoteDataTableProps<T> extends Omit<QTableProps, 'rows' | 'dark'> {
+export interface RemoteDataTableProps<T>
+  extends Omit<QTableProps, 'rows' | 'dark'> {
   response: PagedResponse<T> | undefined
   editable?: boolean | ((row: T) => boolean)
   viewable?: boolean | ((row: T) => boolean)
