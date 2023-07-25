@@ -34,7 +34,7 @@ function checkable(
 }
 const tablePagination = computed(() => {
   return {
-    ...pagination!.value,
+    ...props.pagination,
     rowsNumber: response!.value?.total,
   }
 })

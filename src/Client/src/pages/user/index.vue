@@ -45,6 +45,7 @@ const columns: QTableColumn[] = [
 watchDeep(params, () => {
   fetch()
 })
+onMounted(fetch)
 </script>
 
 <template>
