@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="T">
 import type { QTableSlots } from 'quasar'
-import type { RemoteDataTableProps } from '~/types/data-table'
+import type { RemoteDataTableProps } from '~/types/remote-data-table'
 
 const props = withDefaults(defineProps<RemoteDataTableProps<T>>(), {
   rowsPerPageOptions: () => [15, 50, 200, 0],

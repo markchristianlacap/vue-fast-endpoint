@@ -1,4 +1,4 @@
-import type { QTableProps, QTableSlots } from 'quasar'
+import type { QTableProps } from 'quasar'
 import type { PagedResponse } from './pagination'
 
 export interface RemoteDataTableProps<T>
@@ -13,4 +13,3 @@ export interface RemoteDataTableProps<T>
   deleteMessage?: string | ((row: T) => string)
   cancelMessage?: string | ((row: T) => string)
 }
-export interface RemoteDataTableSlots extends QTableSlots {}
