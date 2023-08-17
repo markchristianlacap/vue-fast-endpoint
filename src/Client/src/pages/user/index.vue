@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import type { QTableColumn } from 'quasar'
-import type {
-  UserPagedRequest as Request,
-  UserPagedModel as Response,
-} from '~/api/users'
 
 const appStore = useAppStore()
 const router = useRouter()
 const user = computed(() => appStore.user)
-const { fetch, loading, params, response } = usePagedRequest<Request, Response>(
+const { fetch, loading, params, response } = usePagedRequest(
   usersApi.getPaged,
 )
 async function logout() {
@@ -55,12 +51,6 @@ onMounted(fetch)
     <p class="text-h6">
       Users
     </p>
-    <RemoteDataTable
-      v-model:response="response"
-      v-model:pagination="params"
-      flat
-      :columns="columns"
-      :loading="loading"
-    />
+    <RemoteDataTable v-model:pagination="params" :response="response" flat :columns="columns" :loading="loading" />
   </div>
 </template>

@@ -1,22 +1,28 @@
-import type { PagedResponse } from '~/types/pagination'
+import type { PagedRequest, PagedResponse } from '~/types/pagination'
 
 export function usePagedRequest<T1, T2>(
   fetchFn: (req?: T1) => Promise<PagedResponse<T2>>,
-  initialParams?: T1,
+  initFilters?: T1,
 ) {
   const loading = ref(false)
   const response = ref<PagedResponse<T2>>()
-  const params = ref<T1>(initialParams ?? ({} as T1))
+  const pagination = ref<PagedRequest>({})
+  const filters = ref<T1>(initFilters ?? ({} as T1))
   const fetch = async () => {
     loading.value = true
-    response.value = await fetchFn(params.value as T1)
+    const request = { ...pagination.value, ...filters.value! } as T1
+    response.value = await fetchFn(request)
     loading.value = false
   }
-
+  const resetPaged = () => {
+    pagination.value = {}
+  }
   return {
     loading,
     response,
     fetch,
-    params,
+    filters,
+    resetPaged,
+    pagination,
   }
 }

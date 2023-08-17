@@ -2,11 +2,8 @@
 import type { QTableSlots } from 'quasar'
 import type { RemoteDataTableProps } from '~/types/remote-data-table'
 
-const props = withDefaults(defineProps<RemoteDataTableProps<T>>(), {
-  rowsPerPageOptions: () => [15, 50, 200, 0],
-})
+const props = defineProps<RemoteDataTableProps<T>>()
 const emits = defineEmits<{
-  (e: 'update:response', value: typeof props.response): void
   (e: 'update:pagination', value: typeof props.pagination): void
   (e: 'view', row: T): void
   (e: 'edit', row: T): void
@@ -14,7 +11,12 @@ const emits = defineEmits<{
   (e: 'delete', row: T): void
 }>()
 
-const { response, pagination } = useVModels(props, emits)
+const {
+  rowsPerPageOptions = [10, 25, 50, 100, 0],
+} = props
+
+const { pagination } = useVModels(props, emits)
+
 function getSlots(slots: any) {
   const tableSlots = slots as QTableSlots
   return tableSlots
@@ -32,10 +34,10 @@ function checkable(
   }
   return props[col]
 }
-const tablePagination = computed(() => {
+const tblPagination = computed(() => {
   return {
-    ...props.pagination,
-    rowsNumber: response!.value?.total,
+    ...pagination?.value,
+    rowsNumber: props.response?.total,
   }
 })
 </script>
@@ -44,8 +46,8 @@ const tablePagination = computed(() => {
   <q-table
     v-bind="props"
     :rows="response?.rows"
-    :pagination="tablePagination"
-    :dark="$q.dark.isActive"
+    :pagination="tblPagination"
+    :rows-per-page-options="rowsPerPageOptions"
     @request="onRequest"
   >
     <template #body-cell-action="prop">
