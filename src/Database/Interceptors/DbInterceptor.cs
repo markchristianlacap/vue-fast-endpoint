@@ -1,5 +1,6 @@
 ﻿using Database.Interfaces;
-using Domain.Common;
+using Domain.Entities;
+using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -40,36 +41,9 @@ public class DbInterceptor : SaveChangesInterceptor
     {
         if (context == null)
             return;
-        // base entity
-        foreach (var entry in context.ChangeTracker.Entries<BaseEntity>())
-        {
-            if (entry.State == EntityState.Added)
-            {
-                entry.Entity.CreatedAt = _date.Now;
-            }
-            else if (entry.State == EntityState.Modified)
-            {
-                entry.Entity.UpdatedAt = _date.Now;
-            }
-        }
-
-        // audit entity
-        foreach (var entry in context.ChangeTracker.Entries<AuditableEntity>())
-        {
-            if (entry.State == EntityState.Added)
-            {
-                entry.Entity.CreatedAt = _date.Now;
-                entry.Entity.CreatedById = _user.UserId;
-            }
-            else if (entry.State == EntityState.Modified)
-            {
-                entry.Entity.UpdatedAt = _date.Now;
-                entry.Entity.UpdatedById = _user.UserId;
-            }
-        }
 
         // created entity
-        foreach (var entry in context.ChangeTracker.Entries<CreatedEntity>())
+        foreach (var entry in context.ChangeTracker.Entries<ICreatedEntity>())
         {
             if (entry.State == EntityState.Added)
             {
@@ -78,12 +52,32 @@ public class DbInterceptor : SaveChangesInterceptor
         }
 
         // auditable created entity
-        foreach (var entry in context.ChangeTracker.Entries<AuditableCreatedEntity>())
+        foreach (var entry in context.ChangeTracker.Entries<ICreatedEntity<User>>())
         {
             if (entry.State == EntityState.Added)
             {
                 entry.Entity.CreatedAt = _date.Now;
                 entry.Entity.CreatedById = _user.UserId;
+            }
+        }
+
+        // auditable updated entity
+        foreach (var entry in context.ChangeTracker.Entries<IUpdatedEntity<User>>())
+        {
+            if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.UpdatedAt = _date.Now;
+                entry.Entity.UpdatedById = _user.UserId;
+            }
+
+        }
+
+        // updated entity
+        foreach (var entry in context.ChangeTracker.Entries<IUpdatedEntity>())
+        {
+            if (entry.State == EntityState.Modified || entry.State == EntityState.Added)
+            {
+                entry.Entity.UpdatedAt = _date.Now;
             }
         }
     }

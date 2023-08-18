@@ -11,9 +11,7 @@ const emits = defineEmits<{
   (e: 'delete', row: T): void
 }>()
 
-const {
-  rowsPerPageOptions = [10, 25, 50, 100, 0],
-} = props
+const { rowsPerPageOptions = [10, 25, 50, 100, 0] } = props
 
 const { pagination } = useVModels(props, emits)
 

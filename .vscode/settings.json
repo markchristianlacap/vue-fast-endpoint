@@ -18,7 +18,7 @@
   },
   "omnisharp.enableRoslynAnalyzers": true,
   "unocss.root": "src/Client",
-  "prettier.enable": false,
   "vue.complete.casing.props": "kebab",
   "vue.complete.casing.tags": "kebab",
+  "dotnet.defaultSolution": "Project.sln",
 }
